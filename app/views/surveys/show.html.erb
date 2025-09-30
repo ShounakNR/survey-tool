@@ -1,0 +1,40 @@
+<p><%= link_to "← Back", surveys_path %></p>
+
+<h2><%= @survey.question %></h2>
+
+<div style="display:flex; gap:.5rem; margin:1rem 0;">
+  <%= button_to "Yes",
+        survey_responses_path(@survey, answer: "yes"),
+        method: :post,
+        form: { style: "display:inline;" },
+        params: { answer: "yes" } %>
+
+  <%= button_to "No",
+        survey_responses_path(@survey, answer: "no"),
+        method: :post,
+        form: { style: "display:inline;" },
+        params: { answer: "no" } %>
+</div>
+
+<section style="margin-top:1rem;">
+  <h3>Results</h3>
+  <p>
+    Total: <strong><%= @survey.total %></strong><br>
+    Yes:   <strong><%= @survey.yes_count %></strong> (<%= @survey.pct_yes %>%)<br>
+    No:    <strong><%= @survey.no_count %></strong>  (<%= @survey.pct_no %>%)
+  </p>
+
+  <h4>Recent Responses</h4>
+  <% if @survey.responses.any? %>
+    <ul>
+      <% @survey.responses.order(created_at: :desc).limit(10).each do |r| %>
+        <li>
+          <%= r.answer ? "Yes" : "No" %>
+          — <%= r.created_at.strftime("%Y-%m-%d %H:%M") %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No responses yet.</p>
+  <% end %>
+</section>

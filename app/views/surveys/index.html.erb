@@ -1,0 +1,25 @@
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+  <h2 style="margin:0;">All Surveys</h2>
+  <%= link_to "New Survey", new_survey_path, class: "btn", style: "padding:.5rem 1rem; border:1px solid #333; text-decoration:none;" %>
+</div>
+
+<% if @surveys.any? %>
+  <ul style="list-style:none; padding:0; display:grid; grid-template-columns:1fr; gap:.5rem;">
+    <% @surveys.each do |s| %>
+      <li style="border:1px solid #ddd; padding:1rem; border-radius:.5rem;">
+        <div style="display:flex; justify-content:space-between; gap:1rem; align-items:center;">
+          <div>
+            <strong><%= link_to s.question, s %></strong>
+            <div style="font-size:.9rem; color:#666;">Responses: <%= s.total %></div>
+          </div>
+          <div style="text-align:right;">
+            <div>Yes: <strong><%= s.pct_yes %>%</strong></div>
+            <div>No:  <strong><%= s.pct_no %>%</strong></div>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No surveys yet.</p>
+<% end %>

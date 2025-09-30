@@ -1,0 +1,13 @@
+<h2>New Survey</h2>
+
+<%= form_with model: @survey, local: true do |f| %>
+  <div style="margin-bottom:1rem;">
+    <%= f.label :question %><br>
+    <%= f.text_field :question, style: "width:100%; padding:.5rem;" %>
+    <% @survey.errors.full_messages_for(:question).each do |msg| %>
+      <div style="color:red;"><%= msg %></div>
+    <% end %>
+  </div>
+
+  <%= f.submit "Create Survey", style: "padding:.5rem 1rem; border:1px solid #333;" %>
+<% end %>
