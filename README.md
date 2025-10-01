@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple survey generator tool.
 
-Things you may want to cover:
+## SETUP
 
-* Ruby version
+### STEP 1
 
-* System dependencies
+Unzip the source code and run bundle to install any gem dependencies
 
-* Configuration
+### STEP 2
 
-* Database creation
+Run `rake db:migrate` to setup the local dev database
 
-* Database initialization
+### STEP 3
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Run the server `rails s` and begin creating surveys 
